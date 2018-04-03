@@ -1,0 +1,19 @@
+
+# Created by https://www.gitignore.io/api/dart
+
+### Dart ###
+# See https://www.dartlang.org/tools/private-files.html
+
+# Files and directories created by pub
+.packages
+.pub/
+build/
+# If you're building an application, you may want to check-in your pubspec.lock
+pubspec.lock
+
+# Directory created by dartdoc
+# If you don't generate documentation locally you can remove this line.
+doc/api/
+
+
+# End of https://www.gitignore.io/api/dart

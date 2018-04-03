@@ -1,0 +1,4 @@
+name: ivory_mirinae
+dependencies:
+  dartson: ^0.2.7
+  oauth2: ^1.2.0
