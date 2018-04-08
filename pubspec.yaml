@@ -2,3 +2,5 @@ name: ivory_mirinae
 dependencies:
   dartson: ^0.2.7
   oauth2: ^1.2.0
+dev_dependencies:
+  test: ^0.12.33
