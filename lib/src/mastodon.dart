@@ -2,29 +2,32 @@ import 'dart:async';
 
 import 'package:http/http.dart' as http;
 
-class Mastodon {
-  static Future instanceAuth({String instance_url, AppInfo appinfo}) async {
-    print('${instance_url}/api/v1/apps');
-    print(appinfo.buildParam());
+import 'package:json_annotation/json_annotation.dart';
+part 'mastodon.g.dart';
 
-    return http
-        .post('${instance_url}/api/v1/apps',
-            headers: {"content-type": "application/x-www-form-urlencoded"},
-            body: appinfo.buildParam())
-        .then((response) {
-      print(response.statusCode);
-      print(response.body.toString());
-    });
-  }
-}
+// class Mastodon {
+//   static Future instanceAuth({String instance_url, AppInfo appinfo}) async {
+//     return http
+//         .post('${instance_url}/api/v1/apps',
+//             headers: {"content-type": "application/json"},
+//             body: appinfo.)
+//         .then((response) {
+//       print(response.statusCode);
+//       print(response.body.toString());
+//     });
+//   }
+// }
 
 enum AppScope { Read, Write, Follow }
 
-class AppInfo {
+@JsonSerializable()
+class AppInfo extends Object with _$AppInfoSerializerMixin {
   final String client_name;
   final String redirect_uris;
   final List<AppScope> scopes;
-  final String website;
+
+  @JsonKey(nullable: true)
+  final String website; // nullable
 
   AppInfo(
       {this.client_name,
@@ -32,23 +35,8 @@ class AppInfo {
       this.scopes,
       this.website = null});
 
-  String buildParam() {
-    const Map<AppInfo, String> scopeText = const {
-      AppScope.Read: "read",
-      AppScope.Write: "write",
-      AppScope.Follow: "follow"
-    };
-
-    String scopes_param =
-        scopes.map((scopeItem) => "scopes[]=${scopeText[scopeItem]}").join("&");
-    // TODO: replace with Uri
-    // https://stackoverflow.com/a/10247302
-    // https://api.dartlang.org/stable/1.20.1/dart-core/Uri-class.html
-    return "client_name=${client_name}" +
-        "&redirect_uris=${redirect_uris}" +
-        "&${scopes_param}" +
-        ((website != null) ? "&website=${website}" : "");
-  }
+  factory AppInfo.fromJson(Map<String, dynamic> json) =>
+      _$AppInfoFromJson(json);
 }
 
 class InstanceAuth {

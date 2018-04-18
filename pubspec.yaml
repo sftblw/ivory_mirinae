@@ -1,6 +1,14 @@
 name: ivory_mirinae
+
+environment:
+  sdk: '>=2.0.0-dev.32 <2.0.0'
+
 dependencies:
-  dartson: ^0.2.7
+  json_annotation: ^0.2.3
   oauth2: ^1.2.0
+
 dev_dependencies:
   test: ^0.12.33
+  # JSON
+  build_runner: ^0.8.0
+  json_serializable: ^0.5.0

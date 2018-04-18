@@ -16,4 +16,6 @@ pubspec.lock
 doc/api/
 
 
+.dart_tool
+
 # End of https://www.gitignore.io/api/dart
