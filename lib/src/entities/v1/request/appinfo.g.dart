@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'mastodon.dart';
+part of 'appinfo.dart';
 
 // **************************************************************************
 // Generator: JsonSerializableGenerator
@@ -19,14 +19,22 @@ AppInfo _$AppInfoFromJson(Map<String, dynamic> json) => new AppInfo(
 abstract class _$AppInfoSerializerMixin {
   String get client_name;
   String get redirect_uris;
-  List<AppScope> get scopes;
+  List<String> get scopes;
   String get website;
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'client_name': client_name,
-        'redirect_uris': redirect_uris,
-        'scopes': scopes
-            ?.map((e) => e == null ? null : e.toString().split('.')[1])
-            ?.toList(),
-        'website': website
-      };
+  Map<String, dynamic> toJson() {
+    var val = <String, dynamic>{
+      'client_name': client_name,
+      'redirect_uris': redirect_uris,
+      'scopes': scopes,
+    };
+
+    void writeNotNull(String key, dynamic value) {
+      if (value != null) {
+        val[key] = value;
+      }
+    }
+
+    writeNotNull('website', website);
+    return val;
+  }
 }
