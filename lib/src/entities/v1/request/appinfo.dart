@@ -1,22 +1,24 @@
 import 'package:json_annotation/json_annotation.dart';
+import '../../entity.dart';
 part 'appinfo.g.dart';
 
 enum AppScope { Read, Write, Follow }
 
-const Map<AppScope, String> _AppScopeAsTextMap = const {
-  AppScope.Read: "read",
-  AppScope.Write: "write",
-  AppScope.Follow: "follow"
-};
-
 @JsonSerializable()
-class AppInfo extends Object with _$AppInfoSerializerMixin {
+class AppInfo extends RequestEntity with _$AppInfoSerializerMixin {
   final String client_name;
   final String redirect_uris;
   final List<String> scopes;
 
   @JsonKey(includeIfNull: false)
   final String website; // nullable
+
+  /// helper to serialize enum to string
+  static const Map<AppScope, String> _AppScopeAsTextMap = const {
+    AppScope.Read: "read",
+    AppScope.Write: "write",
+    AppScope.Follow: "follow"
+  };
 
   AppInfo(
       {this.client_name,
