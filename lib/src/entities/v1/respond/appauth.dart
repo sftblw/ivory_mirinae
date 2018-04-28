@@ -3,7 +3,7 @@ import '../../entity.dart';
 part 'appauth.g.dart';
 
 @JsonSerializable()
-class AppAuth extends ResponseEntity with _$AppAuthSerializerMixin {
+class AppAuth extends RespondEntity with _$AppAuthSerializerMixin {
   final String id;
   final String client_id;
   final String client_secret;

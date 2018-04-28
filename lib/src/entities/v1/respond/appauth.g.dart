@@ -15,9 +15,28 @@ abstract class _$AppAuthSerializerMixin {
   String get id;
   String get client_id;
   String get client_secret;
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'client_id': client_id,
-        'client_secret': client_secret
-      };
+  Map<String, dynamic> toJson() => new _$AppAuthJsonMapWrapper(this);
+}
+
+class _$AppAuthJsonMapWrapper extends $JsonMapWrapper {
+  final _$AppAuthSerializerMixin _v;
+  _$AppAuthJsonMapWrapper(this._v);
+
+  @override
+  Iterable<String> get keys => const ['id', 'client_id', 'client_secret'];
+
+  @override
+  dynamic operator [](Object key) {
+    if (key is String) {
+      switch (key) {
+        case 'id':
+          return _v.id;
+        case 'client_id':
+          return _v.client_id;
+        case 'client_secret':
+          return _v.client_secret;
+      }
+    }
+    return null;
+  }
 }

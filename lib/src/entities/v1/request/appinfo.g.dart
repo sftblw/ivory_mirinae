@@ -21,20 +21,37 @@ abstract class _$AppInfoSerializerMixin {
   String get redirect_uris;
   List<String> get scopes;
   String get website;
-  Map<String, dynamic> toJson() {
-    var val = <String, dynamic>{
-      'client_name': client_name,
-      'redirect_uris': redirect_uris,
-      'scopes': scopes,
-    };
+  Map<String, dynamic> toJson() => new _$AppInfoJsonMapWrapper(this);
+}
 
-    void writeNotNull(String key, dynamic value) {
-      if (value != null) {
-        val[key] = value;
+class _$AppInfoJsonMapWrapper extends $JsonMapWrapper {
+  final _$AppInfoSerializerMixin _v;
+  _$AppInfoJsonMapWrapper(this._v);
+
+  @override
+  Iterable<String> get keys sync* {
+    yield 'client_name';
+    yield 'redirect_uris';
+    yield 'scopes';
+    if (_v.website != null) {
+      yield 'website';
+    }
+  }
+
+  @override
+  dynamic operator [](Object key) {
+    if (key is String) {
+      switch (key) {
+        case 'client_name':
+          return _v.client_name;
+        case 'redirect_uris':
+          return _v.redirect_uris;
+        case 'scopes':
+          return _v.scopes;
+        case 'website':
+          return _v.website;
       }
     }
-
-    writeNotNull('website', website);
-    return val;
+    return null;
   }
 }
