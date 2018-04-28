@@ -26,7 +26,7 @@ abstract class Endpoint {
     var response = await posting;
     // handle error
     if (!_IsStatusCode2xx(response.statusCode)) {
-      throw ErrorEntity.fromJson(json.decode(response.body));
+      throw new ErrorEntity.fromJson(json.decode(response.body));
     }
 
     return response.body;

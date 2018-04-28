@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import '../../entity.dart';
 part 'appinfo.g.dart';
 
-enum AppScope { Read, Write, Follow }
+// such serialization... sad.
+// enum AppScope { Read, Write, Follow }
 
 @JsonSerializable()
 class AppInfo extends RequestEntity with _$AppInfoSerializerMixin {
@@ -13,21 +16,16 @@ class AppInfo extends RequestEntity with _$AppInfoSerializerMixin {
   @JsonKey(includeIfNull: false)
   final String website; // nullable
 
-  /// helper to serialize enum to string
-  static const Map<AppScope, String> _AppScopeAsTextMap = const {
-    AppScope.Read: "read",
-    AppScope.Write: "write",
-    AppScope.Follow: "follow"
-  };
-
-  AppInfo(
-      {this.client_name,
-      this.redirect_uris = "urn:ietf:wg:oauth:2.0:oob",
-      List<AppScope> scopes,
-      this.website = null})
-      : this.scopes =
-            scopes.map((scopeItem) => _AppScopeAsTextMap[scopeItem]).toList();
+  AppInfo({
+    this.client_name,
+    this.redirect_uris = "urn:ietf:wg:oauth:2.0:oob",
+    this.scopes,
+    this.website = null,
+  });
 
   factory AppInfo.fromJson(Map<String, dynamic> json) =>
       _$AppInfoFromJson(json);
+
+  factory AppInfo.fromJsonString(String string) =>
+      new AppInfo.fromJson(json.decode(string));
 }

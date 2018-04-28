@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import '../../entity.dart';
 
@@ -22,55 +24,58 @@ class Account extends RespondEntity with _$AccountSerializerMixin {
       this.header,
       this.header_static,
       this.moved});
-  final String id;
 
   /// The ID of the account
-  final String username;
+  final String id;
 
   /// The username of the account
-  final String acct;
+  final String username;
 
   /// Equals username for local users, includes @domain for remote ones
-  final String display_name;
+  final String acct;
 
   /// The account's display name
-  final bool locked;
+  final String display_name;
 
   /// Boolean for when the account cannot be followed without waiting for approval first
-  final DateTime created_at;
+  final bool locked;
 
   /// The time the account was created
-  final int followers_count;
+  final DateTime created_at;
 
   /// The number of followers for the account
-  final int following_count;
+  final int followers_count;
 
   /// The number of accounts the given account is following
-  final int statuses_count;
+  final int following_count;
 
   /// The number of statuses the account has made
-  final String note;
+  final int statuses_count;
 
   /// Biography of user
-  final Uri url;
+  final String note;
 
   /// URL of the user's profile page (can be remote)
-  final Uri avatar;
+  final Uri url;
 
   /// URL to the avatar image
-  final Uri avatar_static;
+  final Uri avatar;
 
   /// URL to the avatar static image (gif)
-  final Uri header;
+  final Uri avatar_static;
 
   /// URL to the header image
-  final Uri header_static;
+  final Uri header;
 
   /// URL to the header static image (gif)
-  bool moved;
+  final Uri header_static;
 
   /// If the owner decided to switch accounts, new account is in this attribute
+  bool moved;
 
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);
+
+  factory Account.fromJsonString(String string) =>
+      new Account.fromJson(json.decode(string));
 }

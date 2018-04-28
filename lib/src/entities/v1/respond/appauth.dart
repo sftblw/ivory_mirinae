@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import '../../entity.dart';
 part 'appauth.g.dart';
@@ -12,4 +14,7 @@ class AppAuth extends RespondEntity with _$AppAuthSerializerMixin {
 
   factory AppAuth.fromJson(Map<String, dynamic> json) =>
       _$AppAuthFromJson(json);
+
+  factory AppAuth.fromJsonString(String string) =>
+      new AppAuth.fromJson(json.decode(string));
 }

@@ -10,7 +10,7 @@ Builder jsonSerializableCustom(BuilderOptions options) {
 
   return new PartBuilder([
     new JsonSerializableGenerator.withDefaultHelpers(customTypeHelpers,
-        useWrappers: true),
+        useWrappers: false),
     const JsonLiteralGenerator()
   ]);
 }

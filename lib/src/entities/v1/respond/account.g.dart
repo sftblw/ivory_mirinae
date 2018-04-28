@@ -43,71 +43,22 @@ abstract class _$AccountSerializerMixin {
   Uri get header;
   Uri get header_static;
   bool get moved;
-  Map<String, dynamic> toJson() => new _$AccountJsonMapWrapper(this);
-}
-
-class _$AccountJsonMapWrapper extends $JsonMapWrapper {
-  final _$AccountSerializerMixin _v;
-  _$AccountJsonMapWrapper(this._v);
-
-  @override
-  Iterable<String> get keys => const [
-        'id',
-        'username',
-        'acct',
-        'display_name',
-        'locked',
-        'created_at',
-        'followers_count',
-        'following_count',
-        'statuses_count',
-        'note',
-        'url',
-        'avatar',
-        'avatar_static',
-        'header',
-        'header_static',
-        'moved'
-      ];
-
-  @override
-  dynamic operator [](Object key) {
-    if (key is String) {
-      switch (key) {
-        case 'id':
-          return _v.id;
-        case 'username':
-          return _v.username;
-        case 'acct':
-          return _v.acct;
-        case 'display_name':
-          return _v.display_name;
-        case 'locked':
-          return _v.locked;
-        case 'created_at':
-          return _v.created_at?.toIso8601String();
-        case 'followers_count':
-          return _v.followers_count;
-        case 'following_count':
-          return _v.following_count;
-        case 'statuses_count':
-          return _v.statuses_count;
-        case 'note':
-          return _v.note;
-        case 'url':
-          return _v.url?.toString();
-        case 'avatar':
-          return _v.avatar?.toString();
-        case 'avatar_static':
-          return _v.avatar_static?.toString();
-        case 'header':
-          return _v.header?.toString();
-        case 'header_static':
-          return _v.header_static?.toString();
-        case 'moved':
-          return _v.moved;
-      }
-    }
-    return null;
-  }
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'username': username,
+        'acct': acct,
+        'display_name': display_name,
+        'locked': locked,
+        'created_at': created_at?.toIso8601String(),
+        'followers_count': followers_count,
+        'following_count': following_count,
+        'statuses_count': statuses_count,
+        'note': note,
+        'url': url?.toString(),
+        'avatar': avatar?.toString(),
+        'avatar_static': avatar_static?.toString(),
+        'header': header?.toString(),
+        'header_static': header_static?.toString(),
+        'moved': moved
+      };
 }
