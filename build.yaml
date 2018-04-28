@@ -1,0 +1,23 @@
+# This file is copied and modified from dart-lang/json_serializable,
+# which is under BSD-like license.
+
+# and had much headaches to disable original builder...
+
+# Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
+targets:
+  build: # maybe default target?
+    builders:
+      # disable original builder
+      json_serializable|json_serializable:
+        enabled: false
+      # enable this
+      ivory_mirinae|json_serializable_custom:
+        enabled: true
+
+builders:
+  ivory_mirinae|json_serializable_custom:
+    import: "package:ivory_mirinae/src/json_serializable_custom/builder.dart"
+    builder_factories: ["jsonSerializableCustom"]
+    build_extensions: {".dart": [".g.dart"]}
+    auto_apply: dependents
+    build_to: source
