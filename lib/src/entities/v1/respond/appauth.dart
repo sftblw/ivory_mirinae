@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:async';
 
 import 'package:json_annotation/json_annotation.dart';
 import '../../entity.dart';
@@ -17,4 +19,11 @@ class AppAuth extends RespondEntity with _$AppAuthSerializerMixin {
 
   factory AppAuth.fromJsonString(String string) =>
       new AppAuth.fromJson(json.decode(string));
+
+  static Future<AppAuth> loadFromFile(String path) async {
+    var file = new File(path);
+    return ((await file.exists()) == true)
+        ? (new AppAuth.fromJsonString(await file.readAsString()))
+        : (null);
+  }
 }

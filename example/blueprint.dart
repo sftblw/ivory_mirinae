@@ -7,14 +7,9 @@ Future main(List<String> args) async {
   AppInfo app_info = null;
   AppAuth app_auth = null;
 
-  var app_info_file = new File("./.config/app_info.json");
-  var app_auth_file = new File("./.config/app_auth.json");
-  app_info = ((await app_info_file.exists()) == true)
-      ? (new AppInfo.fromJsonString(await app_info_file.readAsString()))
-      : (null);
-  app_auth = ((await app_auth_file.exists()) == true)
-      ? (new AppAuth.fromJsonString(await app_auth_file.readAsString()))
-      : (null);
+  // loadFromFile, saveToFile is only supported by types [AppInfo, AppAuth, UserInfo, UserAuth]
+  app_info = await AppInfo.loadFromFile("./.config/app_info.json");
+  app_auth = await AppAuth.loadFromFile("./.config/app_auth.json");
 
   if (app_info == null || app_auth == null) {
     app_info = new AppInfo(
@@ -28,22 +23,12 @@ Future main(List<String> args) async {
       app_auth = await Mastodon.apps(
           instance_url: "https://twingyeo.kr", app_info: app_info);
     } catch (e) {
-      print("failed to authorize!");
+      print("failed to register app!");
       print(e.toJsonString());
     }
   }
-
-  if (!await app_auth_file.exists()) {
-    await app_auth_file.create(recursive: true);
-  }
-  await app_auth_file.open();
-  await app_auth_file.writeAsString(app_auth.toJsonString());
-
-  if (!await app_info_file.exists()) {
-    await app_info_file.create(recursive: true);
-  }
-  await app_info_file.open();
-  await app_info_file.writeAsString(app_info.toJsonString());
+  app_info.saveToFile("./.config/app_info.json");
+  app_auth.saveToFile("./.config/app_auth.json");
 }
 
 // Entity loadFromFile(Entity entity, String path) async {}

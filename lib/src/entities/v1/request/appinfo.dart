@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:async';
 
 import 'package:json_annotation/json_annotation.dart';
 import '../../entity.dart';
@@ -28,4 +30,11 @@ class AppInfo extends RequestEntity with _$AppInfoSerializerMixin {
 
   factory AppInfo.fromJsonString(String string) =>
       new AppInfo.fromJson(json.decode(string));
+
+  static Future<AppInfo> loadFromFile(String path) async {
+    var file = new File(path);
+    return ((await file.exists()) == true)
+        ? (new AppInfo.fromJsonString(await file.readAsString()))
+        : (null);
+  }
 }
