@@ -6,6 +6,7 @@ environment:
 dependencies:
   json_annotation: ^0.2.3
   oauth2: ^1.2.0
+  html: any
 
 dev_dependencies:
   test: ^0.12.33

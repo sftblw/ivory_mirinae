@@ -6,7 +6,10 @@ import 'package:json_serializable/type_helper.dart';
 import 'custom_type_helpers.dart';
 
 Builder jsonSerializableCustom(BuilderOptions options) {
-  const List<TypeHelper> customTypeHelpers = const [const UriTypeHelper()];
+  const List<TypeHelper> customTypeHelpers = const [
+    const UriTypeHelper(),
+    const BigIntTypeHelper()
+  ];
 
   return new PartBuilder([
     new JsonSerializableGenerator.withDefaultHelpers(customTypeHelpers,
