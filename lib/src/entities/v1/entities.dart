@@ -1,5 +1,6 @@
 // helper
 export 'helper/app_for_instance.dart';
+export 'helper/account_auth.dart';
 
 // request
 export 'request/appinfo.dart';

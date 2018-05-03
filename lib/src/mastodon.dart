@@ -11,7 +11,14 @@ class Mastodon {
   final AppInfo app_info;
   final AppAuth app_auth;
   final oauth2.Credentials credentials;
+
   Mastodon(this.instance_url, this.app_info, this.app_auth, this.credentials);
+
+  Mastodon.fromPacked(AppForInstance instance_auth, AccountAuth account_auth)
+      : this.instance_url = instance_auth.instance_url,
+        this.app_info = instance_auth.app_info,
+        this.app_auth = instance_auth.app_auth,
+        this.credentials = account_auth.credentials;
 
   static Future<AppAuth> appsRegister(
       {String instance_url, AppInfo app_info}) async {
@@ -37,15 +44,32 @@ class Mastodon {
     return app_for_instance;
   }
 
+  /// It does oauth login by password.
+  /// [username] is email for general mastodon instances, as you know.
   static Future<oauth2.Credentials> oauth2ByPassword(
       {String instance_url,
+      AppInfo app_info,
       AppAuth app_auth,
       String username,
       String password}) async {
     var client = await oauth2.resourceOwnerPasswordGrant(
         Uri.parse("${instance_url}/oauth/token"), username, password,
-        identifier: app_auth.client_id, secret: app_auth.client_secret);
+        identifier: app_auth.client_id,
+        secret: app_auth.client_secret,
+        scopes: app_info.scopes);
     return client.credentials;
+  }
+
+  /// easier one for [oauthByPassword]
+  /// sadly dart does not support overload.
+  static Future<oauth2.Credentials> oauth2ByPasswordFromPacked(
+      {AppForInstance instance_auth, String username, String password}) {
+    return oauth2ByPassword(
+        instance_url: instance_auth.instance_url,
+        app_info: instance_auth.app_info,
+        app_auth: instance_auth.app_auth,
+        password: password,
+        username: username);
   }
 
   // TODO: implement authorization flow
