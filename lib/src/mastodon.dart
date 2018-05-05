@@ -6,19 +6,26 @@ import 'package:oauth2/oauth2.dart' as oauth2;
 export 'package:oauth2/oauth2.dart' show Credentials;
 
 /// API access instance
+///
+/// Matches with one instance ([AppForInstance]) with one account ([AccountAuth]).
 class Mastodon {
   final String instance_url;
   final AppInfo app_info;
   final AppAuth app_auth;
-  final oauth2.Credentials credentials;
 
-  Mastodon(this.instance_url, this.app_info, this.app_auth, this.credentials);
+  /// OAuth2 client is drop-in replacement of [package:http/http.dart] [http.Client].
+  /// in order to send authorized request, this library use their client directly.
+  final oauth2.Client client;
+
+  Mastodon(this.instance_url, this.app_info, this.app_auth,
+      oauth2.Credentials credentials)
+      : this.client = new oauth2.Client(credentials);
 
   Mastodon.fromPacked(AppForInstance instance_auth, AccountAuth account_auth)
       : this.instance_url = instance_auth.instance_url,
         this.app_info = instance_auth.app_info,
         this.app_auth = instance_auth.app_auth,
-        this.credentials = account_auth.credentials;
+        this.client = new oauth2.Client(account_auth.credentials);
 
   static Future<AppAuth> appsRegister(
       {String instance_url, AppInfo app_info}) async {
@@ -79,5 +86,6 @@ class Mastodon {
 
   // < apis implementation which require app and user info >
   Future<Status> statusesPost(StatusPost status_posting) async =>
-      apis.statusesPost(base_url: instance_url, status_posting: status_posting);
+      apis.statusesPost(client,
+          base_url: instance_url, status_posting: status_posting);
 }

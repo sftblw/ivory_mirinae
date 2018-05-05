@@ -8,7 +8,6 @@ Future main(List<String> args) async {
   var account_auth = await loginOrLoadAccount(
       instance_auth, "./.config/account_auth.json",
       username: "", password: "");
-  print(account_auth.toJsonString());
   var mastodon = new Mastodon.fromPacked(instance_auth, account_auth);
 
   mastodon

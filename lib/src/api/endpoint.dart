@@ -18,8 +18,14 @@ abstract class Endpoint {
   const Endpoint({this.method, this.url});
 
   Future<String> accessEndpoint(
-      {String instance_url, Map<String, dynamic> body_json}) async {
-    Future<http.Response> posting = http.post('${instance_url}/${url}',
+      {http.Client client = null,
+      String instance_url,
+      Map<String, dynamic> body_json}) async {
+    if (client == null) {
+      client = new http.Client();
+    }
+
+    Future<http.Response> posting = client.post('${instance_url}/${url}',
         headers: {"content-type": "application/json"},
         body: json.encode(body_json));
 

@@ -1,7 +1,4 @@
-# This file is copied and modified from dart-lang/json_serializable,
-# which is under BSD-like license.
-
-# and had much headaches to disable original builder...
+# had much headaches to disable original builder...
 
 # Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
 targets:

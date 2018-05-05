@@ -5,6 +5,7 @@ import 'package:json_serializable/type_helper.dart';
 
 import 'custom_type_helpers.dart';
 
+/// custom builder factory of [package:build] and [json_serializable]
 Builder jsonSerializableCustom(BuilderOptions options) {
   const List<TypeHelper> customTypeHelpers = const [
     const UriTypeHelper(),
