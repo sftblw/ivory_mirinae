@@ -9,7 +9,8 @@ import 'custom_type_helpers.dart';
 Builder jsonSerializableCustom(BuilderOptions options) {
   const List<TypeHelper> customTypeHelpers = const [
     const UriTypeHelper(),
-    const BigIntTypeHelper()
+    const BigIntTypeHelper(),
+    const DocumentTypeHelper()
   ];
 
   return new PartBuilder([

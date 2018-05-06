@@ -15,6 +15,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     reblog: json['reblog'] == null
         ? null
         : new Status.fromJson(json['reblog'] as Map<String, dynamic>),
+    content: html_parser.parse(json['content']),
     created_at: json['created_at'] == null
         ? null
         : DateTime.parse(json['created_at'] as String),
@@ -36,6 +37,7 @@ abstract class _$StatusSerializerMixin {
   String get in_reply_to_id;
   String get in_reply_to_account_id;
   Status get reblog;
+  Document get content;
   DateTime get created_at;
   int get reblogs_count;
   int get favourites_count;
@@ -63,6 +65,7 @@ abstract class _$StatusSerializerMixin {
     writeNotNull('in_reply_to_id', in_reply_to_id);
     writeNotNull('in_reply_to_account_id', in_reply_to_account_id);
     writeNotNull('reblog', reblog);
+    val['content'] = content?.body.innerHtml;
     val['created_at'] = created_at?.toIso8601String();
     val['reblogs_count'] = reblogs_count;
     val['favourites_count'] = favourites_count;

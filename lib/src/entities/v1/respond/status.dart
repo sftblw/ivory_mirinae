@@ -3,6 +3,8 @@ import 'dart:io';
 import 'dart:async';
 
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:html/parser.dart' as html_parser;
 import 'package:html/dom.dart' show Document;
 
 import '../../entity.dart';
@@ -39,7 +41,7 @@ class Status extends RequestEntity with _$StatusSerializerMixin {
   Status reblog;
 
   /// (required) Body of the status; this will contain HTML (remote HTML already sanitized)
-  // final Document content;
+  final Document content;
 
   /// (required) The time the status was created
   final DateTime created_at;
@@ -103,7 +105,7 @@ class Status extends RequestEntity with _$StatusSerializerMixin {
     this.in_reply_to_id = null,
     this.in_reply_to_account_id = null,
     this.reblog = null,
-    // this.content,
+    this.content,
     this.created_at,
     // this.emojis,
     this.reblogs_count,
