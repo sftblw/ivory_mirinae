@@ -1,8 +1,5 @@
-// import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
-
 import 'package:source_gen/source_gen.dart' show TypeChecker;
-
 import 'package:json_serializable/type_helper.dart';
 
 class BigIntTypeHelper extends TypeHelper {
@@ -30,6 +27,3 @@ class BigIntTypeHelper extends TypeHelper {
 bool _matchesType(DartType type) {
   return const TypeChecker.fromRuntime(BigInt).isExactlyType(type);
 }
-
-// bool _matchesType(DartType type) =>
-//     const TypeChecker.fromUrl('dart:core#DateTime').isExactlyType(type);
