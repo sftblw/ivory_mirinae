@@ -10,8 +10,9 @@ Future main(List<String> args) async {
       username: "", password: "");
   var mastodon = new Mastodon.fromPacked(instance_auth, account_auth);
 
-  mastodon
-      .statusesPost(new StatusPost(status: "Hello from ivory_mirinae in dev!"));
+  Status status = await mastodon.statusesPost(new StatusPost(
+      status: "Hello from ivory_mirinae in dev!", visibility: "direct"));
+  print(status.toJsonString());
 }
 
 Future<AppForInstance> registerOrLoadApp(String path) async {
