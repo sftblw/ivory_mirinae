@@ -54,7 +54,7 @@ abstract class _$AccountSerializerMixin {
       'followers_count': followers_count,
       'following_count': following_count,
       'statuses_count': statuses_count,
-      'note': note?.body.innerHtml,
+      'note': note?.body?.innerHtml,
       'url': url,
       'avatar': avatar?.toString(),
       'avatar_static': avatar_static?.toString(),

@@ -14,7 +14,8 @@ class DocumentTypeHelper extends TypeHelper {
     if (!_matchesType(targetType)) {
       return null;
     }
-    return "$expression${context.nullable ? "?" : ""}.body.innerHtml";
+    String nulldot = "${context.nullable ? "?" : ""}.";
+    return "$expression${nulldot}body${nulldot}innerHtml";
   }
 
   @override

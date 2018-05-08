@@ -70,7 +70,7 @@ abstract class _$StatusSerializerMixin {
     writeNotNull('in_reply_to_id', in_reply_to_id);
     writeNotNull('in_reply_to_account_id', in_reply_to_account_id);
     writeNotNull('reblog', reblog);
-    val['content'] = content?.body.innerHtml;
+    val['content'] = content?.body?.innerHtml;
     val['created_at'] = created_at?.toIso8601String();
     val['reblogs_count'] = reblogs_count;
     val['favourites_count'] = favourites_count;
