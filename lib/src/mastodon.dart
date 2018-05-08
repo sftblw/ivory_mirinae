@@ -5,10 +5,12 @@ import 'api/v1/apis.dart' as apis;
 import 'package:oauth2/oauth2.dart' as oauth2;
 export 'package:oauth2/oauth2.dart' show Credentials;
 
+part 'mastodon_part/mastodon_api_statuses.dart';
+
 /// API access instance
 ///
 /// Matches with one instance ([AppForInstance]) with one account ([AccountAuth]).
-class Mastodon {
+class Mastodon extends Object with _$MastodonApiMixin_Statuses {
   final String instance_url;
   final AppInfo app_info;
   final AppAuth app_auth;
@@ -83,9 +85,4 @@ class Mastodon {
   // https://pub.dartlang.org/packages/oauth2
   // static String oauth2ByAuthCodeUrl() {}
   // static Future<oauth2.Credentials> oauth2ByAuthCode(){}
-
-  // < apis implementation which require app and user info >
-  Future<Status> statusesPost(StatusPost status_posting) async =>
-      apis.statusesPost(client,
-          base_url: instance_url, status_posting: status_posting);
 }
