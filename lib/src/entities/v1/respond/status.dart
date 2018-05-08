@@ -12,7 +12,7 @@ import '../../v1/entities.dart';
 part 'status.g.dart';
 
 @JsonSerializable()
-class Status extends RequestEntity with _$StatusSerializerMixin {
+class Status extends RespondEntity with _$StatusSerializerMixin {
   /// (required) The ID of the status
   final String id;
 
