@@ -11,9 +11,6 @@ import '../../entity.dart';
 import '../../v1/entities.dart';
 part 'status.g.dart';
 
-// such serialization... sad.
-// enum AppScope { Read, Write, Follow }
-
 @JsonSerializable()
 class Status extends RequestEntity with _$StatusSerializerMixin {
   /// (required) The ID of the status
