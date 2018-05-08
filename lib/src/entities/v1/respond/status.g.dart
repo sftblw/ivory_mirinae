@@ -10,6 +10,9 @@ Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     id: json['id'] as String,
     uri: Uri.parse(json['uri']),
     url: Uri.parse(json['url']),
+    account: json['account'] == null
+        ? null
+        : new Account.fromJson(json['account'] as Map<String, dynamic>),
     in_reply_to_id: json['in_reply_to_id'] as String,
     in_reply_to_account_id: json['in_reply_to_account_id'] as String,
     reblog: json['reblog'] == null
@@ -34,6 +37,7 @@ abstract class _$StatusSerializerMixin {
   String get id;
   Uri get uri;
   Uri get url;
+  Account get account;
   String get in_reply_to_id;
   String get in_reply_to_account_id;
   Status get reblog;
@@ -54,6 +58,7 @@ abstract class _$StatusSerializerMixin {
       'id': id,
       'uri': uri?.toString(),
       'url': url?.toString(),
+      'account': account,
     };
 
     void writeNotNull(String key, dynamic value) {

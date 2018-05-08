@@ -26,7 +26,7 @@ class Status extends RequestEntity with _$StatusSerializerMixin {
   final Uri url;
 
   /// (required) The Account which posted the status
-  // final Account account;
+  final Account account;
 
   /// (optional) null or the ID of the status it replies to
   @JsonKey(includeIfNull: false)
@@ -101,7 +101,7 @@ class Status extends RequestEntity with _$StatusSerializerMixin {
     this.id,
     this.uri,
     this.url,
-    // this.account,
+    this.account,
     this.in_reply_to_id = null,
     this.in_reply_to_account_id = null,
     this.reblog = null,
