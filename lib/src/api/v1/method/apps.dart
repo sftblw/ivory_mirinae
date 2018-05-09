@@ -15,7 +15,7 @@ class _AppsRegister extends Endpoint {
     var app_info_json = app_info.toJson();
     app_info_json['scopes'] = app_info.scopes.join(" ");
 
-    return new AppAuth.fromJson(json.decode(await accessEndpoint(
+    return new AppAuth.fromJson(json.decode(await accessEndpointPost(
         instance_url: base_url, body_json: app_info_json)));
   }
 }

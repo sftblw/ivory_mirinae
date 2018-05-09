@@ -17,7 +17,35 @@ abstract class Endpoint {
 
   const Endpoint({this.method, this.url});
 
-  Future<String> accessEndpoint(
+  static const bool print_response = false;
+
+  Future<String> accessEndpointGet(
+      {http.Client client = null,
+      String instance_url,
+      String suburl = null}) async {
+    if (client == null) {
+      client = new http.Client();
+    }
+
+    Future<http.Response> posting = client.get(
+        '${instance_url}/${url}' + (suburl != null ? "/$suburl" : ""),
+        headers: {"accept": "application/json"});
+
+    var response = await posting;
+
+    if (print_response) {
+      print(response.body);
+    }
+
+    // handle error
+    if (!_IsStatusCode2xx(response.statusCode)) {
+      throw new ErrorEntity.fromJson(json.decode(response.body));
+    }
+
+    return response.body;
+  }
+
+  Future<String> accessEndpointPost(
       {http.Client client = null,
       String instance_url,
       Map<String, dynamic> body_json,
@@ -32,7 +60,11 @@ abstract class Endpoint {
         body: json.encode(body_json));
 
     var response = await posting;
-    print(response.body);
+
+    if (print_response) {
+      print(response.body);
+    }
+
     // handle error
     if (!_IsStatusCode2xx(response.statusCode)) {
       throw new ErrorEntity.fromJson(json.decode(response.body));
@@ -40,6 +72,8 @@ abstract class Endpoint {
 
     return response.body;
   }
+
+  // TODO: accessEndpointPatch
 }
 
 bool _IsStatusCode2xx(int code) {

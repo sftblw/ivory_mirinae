@@ -11,12 +11,13 @@ Future main(List<String> args) async {
   var mastodon = new Mastodon.fromPacked(instance_auth, account_auth);
 
   Status status_got = await mastodon.statusesGet("99994405748419222");
+  print(status_got.toJsonString());
 
   Status status_posted = await mastodon.statusesPost(new StatusPost(
       status: "Hello from ivory_mirinae in dev!",
       visibility: "direct",
       in_reply_to_id: "99994405748419222"));
-  // print(status_posted.toJsonString());
+  print(status_posted.toJsonString());
 }
 
 Future<AppForInstance> registerOrLoadApp(String path) async {

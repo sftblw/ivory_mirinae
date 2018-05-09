@@ -26,7 +26,7 @@ class _StatusesGet extends Endpoint {
   const _StatusesGet() : super(method: HttpMethod.GET, url: _prefix);
 
   Future<Status> call(http.Client client, {String base_url, String id}) async {
-    return new Status.fromJson(json.decode(await accessEndpoint(
+    return new Status.fromJson(json.decode(await accessEndpointGet(
       client: client,
       instance_url: base_url,
       suburl: id,
@@ -39,7 +39,7 @@ class _StatusesPost extends Endpoint {
 
   Future<Status> call(http.Client client,
       {String base_url, StatusPost status_posting}) async {
-    return new Status.fromJson(json.decode(await accessEndpoint(
+    return new Status.fromJson(json.decode(await accessEndpointPost(
         client: client,
         instance_url: base_url,
         body_json: status_posting.toJson())));
