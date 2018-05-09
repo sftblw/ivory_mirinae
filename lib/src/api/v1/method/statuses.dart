@@ -22,11 +22,11 @@ const _StatusesPost statusesPost = const _StatusesPost();
 // const _StatusesMute statusesMute = const _StatusesMute();
 // const _StatusesUnmute statusesUnmute = const _StatusesUnmute();
 
-class _StatusesGet extends Endpoint {
-  const _StatusesGet() : super(method: HttpMethod.GET, url: _prefix);
+class _StatusesGet extends EndpointGet {
+  const _StatusesGet() : super(_prefix);
 
   Future<Status> call(http.Client client, {String base_url, String id}) async {
-    return new Status.fromJson(json.decode(await accessEndpointGet(
+    return new Status.fromJson(json.decode(await accessEndpoint(
       client: client,
       instance_url: base_url,
       suburl: id,
@@ -34,12 +34,12 @@ class _StatusesGet extends Endpoint {
   }
 }
 
-class _StatusesPost extends Endpoint {
-  const _StatusesPost() : super(method: HttpMethod.POST, url: _prefix);
+class _StatusesPost extends EndpointPost {
+  const _StatusesPost() : super(_prefix);
 
   Future<Status> call(http.Client client,
       {String base_url, StatusPost status_posting}) async {
-    return new Status.fromJson(json.decode(await accessEndpointPost(
+    return new Status.fromJson(json.decode(await accessEndpoint(
         client: client,
         instance_url: base_url,
         body_json: status_posting.toJson())));

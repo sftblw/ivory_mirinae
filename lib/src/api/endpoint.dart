@@ -9,17 +9,26 @@ enum HttpMethod { GET, POST, PATCH }
 
 /// Base class for each endpoint
 ///
-/// Each endpoint should implement it by callable class,
+/// Each endpoint should implement one of subclass of it by callable class,
 /// hide implementation, and export final varlable of class.
 abstract class Endpoint {
   final HttpMethod method;
-  final String url;
+  final String base_url;
 
-  const Endpoint({this.method, this.url});
+  const Endpoint({this.method, this.base_url});
 
   static const bool print_response = false;
 
-  Future<String> accessEndpointGet(
+  static bool _IsStatusCode2xx(int code) {
+    return (200 <= code) && (300 > code);
+  }
+}
+
+abstract class EndpointGet extends Endpoint {
+  const EndpointGet(String base_url)
+      : super(base_url: base_url, method: HttpMethod.GET);
+
+  Future<String> accessEndpoint(
       {http.Client client = null,
       String instance_url,
       String suburl = null}) async {
@@ -27,25 +36,32 @@ abstract class Endpoint {
       client = new http.Client();
     }
 
-    Future<http.Response> posting = client.get(
-        '${instance_url}/${url}' + (suburl != null ? "/$suburl" : ""),
-        headers: {"accept": "application/json"});
+    String ap_url =
+        '${instance_url}/${base_url}' + (suburl != null ? "/$suburl" : "");
 
-    var response = await posting;
+    var response = await client.get(
+      ap_url,
+      headers: {"accept": "application/json"},
+    );
 
-    if (print_response) {
+    if (Endpoint.print_response) {
       print(response.body);
     }
 
     // handle error
-    if (!_IsStatusCode2xx(response.statusCode)) {
+    if (!Endpoint._IsStatusCode2xx(response.statusCode)) {
       throw new ErrorEntity.fromJson(json.decode(response.body));
     }
 
     return response.body;
   }
+}
 
-  Future<String> accessEndpointPost(
+abstract class EndpointPost extends Endpoint {
+  const EndpointPost(String base_url)
+      : super(base_url: base_url, method: HttpMethod.POST);
+
+  Future<String> accessEndpoint(
       {http.Client client = null,
       String instance_url,
       Map<String, dynamic> body_json,
@@ -54,28 +70,23 @@ abstract class Endpoint {
       client = new http.Client();
     }
 
-    Future<http.Response> posting = client.post(
-        '${instance_url}/${url}' + (suburl != null ? "/$suburl" : ""),
+    String ap_url =
+        '${instance_url}/${base_url}' + (suburl != null ? "/$suburl" : "");
+
+    var response = await client.post(ap_url,
         headers: {"content-type": "application/json"},
         body: json.encode(body_json));
 
-    var response = await posting;
-
-    if (print_response) {
+    if (Endpoint.print_response) {
       print(response.body);
     }
 
     // handle error
-    if (!_IsStatusCode2xx(response.statusCode)) {
+    if (!Endpoint._IsStatusCode2xx(response.statusCode)) {
       throw new ErrorEntity.fromJson(json.decode(response.body));
     }
 
     return response.body;
   }
-
-  // TODO: accessEndpointPatch
 }
-
-bool _IsStatusCode2xx(int code) {
-  return (200 <= code) && (300 > code);
-}
+// abstract class EndpointPatch extends Endpoint {}
