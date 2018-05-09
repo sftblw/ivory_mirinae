@@ -10,13 +10,13 @@ Future main(List<String> args) async {
       username: "", password: "");
   var mastodon = new Mastodon.fromPacked(instance_auth, account_auth);
 
-  Status status_got = await mastodon.statusesGet("99994405748419222");
+  Status status_got = await mastodon.statusesGet("99999337389821650");
   print(status_got.toJsonString());
 
   Status status_posted = await mastodon.statusesPost(new StatusPost(
       status: "Hello from ivory_mirinae in dev!",
       visibility: "direct",
-      in_reply_to_id: "99994405748419222"));
+      in_reply_to_id: "99999337389821650"));
   print(status_posted.toJsonString());
 }
 

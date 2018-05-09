@@ -17,7 +17,8 @@ abstract class Endpoint {
 
   const Endpoint({this.method, this.base_url});
 
-  static const bool print_response = false;
+  /// for debug purpose
+  static const bool _print_response = false;
 
   static bool _IsStatusCode2xx(int code) {
     return (200 <= code) && (300 > code);
@@ -44,7 +45,7 @@ abstract class EndpointGet extends Endpoint {
       headers: {"accept": "application/json"},
     );
 
-    if (Endpoint.print_response) {
+    if (Endpoint._print_response) {
       print(response.body);
     }
 
@@ -77,7 +78,7 @@ abstract class EndpointPost extends Endpoint {
         headers: {"content-type": "application/json"},
         body: json.encode(body_json));
 
-    if (Endpoint.print_response) {
+    if (Endpoint._print_response) {
       print(response.body);
     }
 
