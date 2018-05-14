@@ -1,13 +1,26 @@
-// // GENERATED CODE - DO NOT MODIFY BY HAND
+// GENERATED CODE - DO NOT MODIFY BY HAND
 
-// part of 'mention.dart';
+part of 'mention.dart';
 
-// // **************************************************************************
-// // Generator: JsonSerializableGenerator
-// // **************************************************************************
+// **************************************************************************
+// Generator: JsonSerializableGenerator
+// **************************************************************************
 
-// Mention _$MentionFromJson(Map<String, dynamic> json) => new Mention();
+Mention _$MentionFromJson(Map<String, dynamic> json) => new Mention(
+    url: Uri.parse(json['url']),
+    username: json['username'] as String,
+    acct: json['acct'] as String,
+    id: json['id'] as String);
 
-// abstract class _$MentionSerializerMixin {
-//   Map<String, dynamic> toJson() => <String, dynamic>{};
-// }
+abstract class _$MentionSerializerMixin {
+  Uri get url;
+  String get username;
+  String get acct;
+  String get id;
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'url': url?.toString(),
+        'username': username,
+        'acct': acct,
+        'id': id
+      };
+}

@@ -30,6 +30,9 @@ Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     sensitive: json['sensitive'] as bool,
     spoiler_text: json['spoiler_text'] as String,
     visibility: json['visibility'] as String,
+    mentions: json['mentions'] == null
+        ? null
+        : new Mention.fromJson(json['mentions'] as Map<String, dynamic>),
     language: json['language'] as String,
     pinned: json['pinned'] as bool);
 
@@ -51,6 +54,7 @@ abstract class _$StatusSerializerMixin {
   bool get sensitive;
   String get spoiler_text;
   String get visibility;
+  Mention get mentions;
   String get language;
   bool get pinned;
   Map<String, dynamic> toJson() {
@@ -80,6 +84,7 @@ abstract class _$StatusSerializerMixin {
     val['sensitive'] = sensitive;
     val['spoiler_text'] = spoiler_text;
     val['visibility'] = visibility;
+    val['mentions'] = mentions;
     writeNotNull('language', language);
     writeNotNull('pinned', pinned);
     return val;
