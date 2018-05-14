@@ -84,7 +84,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
 
   /// (optional) Application from which the status was posted
   @JsonKey(includeIfNull: false)
-  // App application;
+  Application application;
 
   /// (optional) The detected language for the status, if detected
   @JsonKey(includeIfNull: false)
@@ -116,7 +116,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
     // this.media_attachments,
     this.mentions,
     this.tags,
-    // this.application = null,
+    this.application = null,
     this.language = null,
     this.pinned = null,
   });

@@ -8,7 +8,7 @@ export 'request/status_post.dart';
 
 // respond
 export 'respond/account.dart';
-export 'respond/app.dart';
+export 'respond/application.dart';
 export 'respond/appauth.dart';
 export 'respond/attachment.dart';
 export 'respond/emoji.dart';
