@@ -7,11 +7,11 @@ part of 'tag.dart';
 // **************************************************************************
 
 Tag _$TagFromJson(Map<String, dynamic> json) => new Tag(
-    name: (json['name'] as List)?.map((e) => e as String)?.toList(),
-    url: Uri.parse(json['url']));
+    name: json['name'] as String,
+    url: ((json['url'] != null) ? Uri.parse(json['url']) : null));
 
 abstract class _$TagSerializerMixin {
-  List<String> get name;
+  String get name;
   Uri get url;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'name': name, 'url': url?.toString()};

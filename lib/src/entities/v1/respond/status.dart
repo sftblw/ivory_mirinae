@@ -44,7 +44,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
   final DateTime created_at;
 
   /// (required) An array of Emoji
-  final Emoji emojis;
+  final List<Emoji> emojis;
 
   /// (required) The number of reblogs for the status
   final int reblogs_count;
@@ -74,13 +74,13 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
   final String visibility;
 
   /// (required) An array of Attachments
-  final Attachment media_attachments;
+  final List<Attachment> media_attachments;
 
   /// (required) An array of Mentions
-  final Mention mentions;
+  final List<Mention> mentions;
 
   /// (required) An array of Tags
-  final Tag tags;
+  final List<Tag> tags;
 
   /// (optional) Application from which the status was posted
   @JsonKey(includeIfNull: false)

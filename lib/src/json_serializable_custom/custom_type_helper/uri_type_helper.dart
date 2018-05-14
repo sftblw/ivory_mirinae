@@ -23,6 +23,10 @@ class UriTypeHelper extends TypeHelper {
     if (!_matchesType(targetType)) {
       return null;
     }
+
+    if (context.nullable == true) {
+      return "(($expression != null) ? Uri.parse($expression) : null)";
+    }
     return "Uri.parse($expression)";
   }
 }
@@ -30,6 +34,3 @@ class UriTypeHelper extends TypeHelper {
 bool _matchesType(DartType type) {
   return const TypeChecker.fromRuntime(Uri).isExactlyType(type);
 }
-
-// bool _matchesType(DartType type) =>
-//     const TypeChecker.fromUrl('dart:core#DateTime').isExactlyType(type);

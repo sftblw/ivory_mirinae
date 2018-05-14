@@ -18,12 +18,16 @@ Account _$AccountFromJson(Map<String, dynamic> json) => new Account(
     followers_count: json['followers_count'] as int,
     following_count: json['following_count'] as int,
     statuses_count: json['statuses_count'] as int,
-    note: html_parser.parse(json['note']),
+    note: ((json['note'] != null) ? html_parser.parse(json['note']) : null),
     url: json['url'] as String,
-    avatar: Uri.parse(json['avatar']),
-    avatar_static: Uri.parse(json['avatar_static']),
-    header: Uri.parse(json['header']),
-    header_static: Uri.parse(json['header_static']),
+    avatar: ((json['avatar'] != null) ? Uri.parse(json['avatar']) : null),
+    avatar_static: ((json['avatar_static'] != null)
+        ? Uri.parse(json['avatar_static'])
+        : null),
+    header: ((json['header'] != null) ? Uri.parse(json['header']) : null),
+    header_static: ((json['header_static'] != null)
+        ? Uri.parse(json['header_static'])
+        : null),
     moved: json['moved'] as String);
 
 abstract class _$AccountSerializerMixin {

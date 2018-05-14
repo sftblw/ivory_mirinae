@@ -7,7 +7,7 @@ part of 'mention.dart';
 // **************************************************************************
 
 Mention _$MentionFromJson(Map<String, dynamic> json) => new Mention(
-    url: Uri.parse(json['url']),
+    url: ((json['url'] != null) ? Uri.parse(json['url']) : null),
     username: json['username'] as String,
     acct: json['acct'] as String,
     id: json['id'] as String);

@@ -7,7 +7,8 @@ part of 'application.dart';
 // **************************************************************************
 
 Application _$ApplicationFromJson(Map<String, dynamic> json) => new Application(
-    name: json['name'] as String, website: Uri.parse(json['website']));
+    name: json['name'] as String,
+    website: ((json['website'] != null) ? Uri.parse(json['website']) : null));
 
 abstract class _$ApplicationSerializerMixin {
   String get name;

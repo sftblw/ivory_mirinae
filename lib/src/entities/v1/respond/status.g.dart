@@ -8,8 +8,8 @@ part of 'status.dart';
 
 Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     id: json['id'] as String,
-    uri: Uri.parse(json['uri']),
-    url: Uri.parse(json['url']),
+    uri: ((json['uri'] != null) ? Uri.parse(json['uri']) : null),
+    url: ((json['url'] != null) ? Uri.parse(json['url']) : null),
     account: json['account'] == null
         ? null
         : new Account.fromJson(json['account'] as Map<String, dynamic>),
@@ -18,13 +18,15 @@ Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     reblog: json['reblog'] == null
         ? null
         : new Status.fromJson(json['reblog'] as Map<String, dynamic>),
-    content: html_parser.parse(json['content']),
+    content:
+        ((json['content'] != null) ? html_parser.parse(json['content']) : null),
     created_at: json['created_at'] == null
         ? null
         : DateTime.parse(json['created_at'] as String),
-    emojis: json['emojis'] == null
-        ? null
-        : new Emoji.fromJson(json['emojis'] as Map<String, dynamic>),
+    emojis: (json['emojis'] as List)
+        ?.map((e) =>
+            e == null ? null : new Emoji.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     reblogs_count: json['reblogs_count'] as int,
     favourites_count: json['favourites_count'] as int,
     reblogged: json['reblogged'] as bool,
@@ -33,16 +35,19 @@ Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     sensitive: json['sensitive'] as bool,
     spoiler_text: json['spoiler_text'] as String,
     visibility: json['visibility'] as String,
-    media_attachments: json['media_attachments'] == null
-        ? null
-        : new Attachment.fromJson(
-            json['media_attachments'] as Map<String, dynamic>),
-    mentions: json['mentions'] == null
-        ? null
-        : new Mention.fromJson(json['mentions'] as Map<String, dynamic>),
-    tags: json['tags'] == null
-        ? null
-        : new Tag.fromJson(json['tags'] as Map<String, dynamic>),
+    media_attachments: (json['media_attachments'] as List)
+        ?.map((e) => e == null
+            ? null
+            : new Attachment.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    mentions: (json['mentions'] as List)
+        ?.map((e) =>
+            e == null ? null : new Mention.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
+    tags: (json['tags'] as List)
+        ?.map((e) =>
+            e == null ? null : new Tag.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     application: json['application'] == null
         ? null
         : new Application.fromJson(json['application'] as Map<String, dynamic>),
@@ -59,7 +64,7 @@ abstract class _$StatusSerializerMixin {
   Status get reblog;
   Document get content;
   DateTime get created_at;
-  Emoji get emojis;
+  List<Emoji> get emojis;
   int get reblogs_count;
   int get favourites_count;
   bool get reblogged;
@@ -68,9 +73,9 @@ abstract class _$StatusSerializerMixin {
   bool get sensitive;
   String get spoiler_text;
   String get visibility;
-  Attachment get media_attachments;
-  Mention get mentions;
-  Tag get tags;
+  List<Attachment> get media_attachments;
+  List<Mention> get mentions;
+  List<Tag> get tags;
   Application get application;
   String get language;
   bool get pinned;

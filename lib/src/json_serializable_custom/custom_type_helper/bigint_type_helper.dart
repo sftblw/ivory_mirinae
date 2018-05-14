@@ -20,6 +20,10 @@ class BigIntTypeHelper extends TypeHelper {
     if (!_matchesType(targetType)) {
       return null;
     }
+
+    if (context.nullable == true) {
+      return "(($expression != null) ? BigInt.parse($expression) : null)";
+    }
     return "BigInt.parse($expression)";
   }
 }

@@ -24,6 +24,10 @@ class DocumentTypeHelper extends TypeHelper {
     if (!_matchesType(targetType)) {
       return null;
     }
+
+    if (context.nullable == true) {
+      return "(($expression != null) ? html_parser.parse($expression) : null)";
+    }
     return "html_parser.parse($expression)";
   }
 }

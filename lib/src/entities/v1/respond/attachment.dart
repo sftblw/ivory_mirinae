@@ -39,7 +39,7 @@ class Attachment extends RespondEntity with _$AttachmentSerializerMixin {
   /// This library does nothing with this argument yet.
   /// TODO: handle meta types
   @JsonKey(includeIfNull: false)
-  String meta;
+  dynamic meta;
 
   /// (optional) A description of the image for the visually impaired (maximum 420 characters), or
   @JsonKey(includeIfNull: false)

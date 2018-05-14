@@ -8,8 +8,9 @@ part of 'emoji.dart';
 
 Emoji _$EmojiFromJson(Map<String, dynamic> json) => new Emoji(
     shortcode: json['shortcode'] as String,
-    static_url: Uri.parse(json['static_url']),
-    url: Uri.parse(json['url']));
+    static_url:
+        ((json['static_url'] != null) ? Uri.parse(json['static_url']) : null),
+    url: ((json['url'] != null) ? Uri.parse(json['url']) : null));
 
 abstract class _$EmojiSerializerMixin {
   String get shortcode;
