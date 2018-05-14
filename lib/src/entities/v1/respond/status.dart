@@ -80,7 +80,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
   final Mention mentions;
 
   /// (required) An array of Tags
-  // final Tag tags;
+  final Tag tags;
 
   /// (optional) Application from which the status was posted
   @JsonKey(includeIfNull: false)
@@ -115,7 +115,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
     this.visibility,
     // this.media_attachments,
     this.mentions,
-    // this.tags,
+    this.tags,
     // this.application = null,
     this.language = null,
     this.pinned = null,

@@ -36,6 +36,9 @@ Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     mentions: json['mentions'] == null
         ? null
         : new Mention.fromJson(json['mentions'] as Map<String, dynamic>),
+    tags: json['tags'] == null
+        ? null
+        : new Tag.fromJson(json['tags'] as Map<String, dynamic>),
     language: json['language'] as String,
     pinned: json['pinned'] as bool);
 
@@ -59,6 +62,7 @@ abstract class _$StatusSerializerMixin {
   String get spoiler_text;
   String get visibility;
   Mention get mentions;
+  Tag get tags;
   String get language;
   bool get pinned;
   Map<String, dynamic> toJson() {
@@ -90,6 +94,7 @@ abstract class _$StatusSerializerMixin {
     val['spoiler_text'] = spoiler_text;
     val['visibility'] = visibility;
     val['mentions'] = mentions;
+    val['tags'] = tags;
     writeNotNull('language', language);
     writeNotNull('pinned', pinned);
     return val;
