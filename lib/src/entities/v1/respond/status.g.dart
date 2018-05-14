@@ -22,6 +22,9 @@ Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     created_at: json['created_at'] == null
         ? null
         : DateTime.parse(json['created_at'] as String),
+    emojis: json['emojis'] == null
+        ? null
+        : new Emoji.fromJson(json['emojis'] as Map<String, dynamic>),
     reblogs_count: json['reblogs_count'] as int,
     favourites_count: json['favourites_count'] as int,
     reblogged: json['reblogged'] as bool,
@@ -46,6 +49,7 @@ abstract class _$StatusSerializerMixin {
   Status get reblog;
   Document get content;
   DateTime get created_at;
+  Emoji get emojis;
   int get reblogs_count;
   int get favourites_count;
   bool get reblogged;
@@ -76,6 +80,7 @@ abstract class _$StatusSerializerMixin {
     writeNotNull('reblog', reblog);
     val['content'] = content?.body?.innerHtml;
     val['created_at'] = created_at?.toIso8601String();
+    val['emojis'] = emojis;
     val['reblogs_count'] = reblogs_count;
     val['favourites_count'] = favourites_count;
     writeNotNull('reblogged', reblogged);

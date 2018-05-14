@@ -44,7 +44,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
   final DateTime created_at;
 
   /// (required) An array of Emoji
-  // final Emoji emojis;
+  final Emoji emojis;
 
   /// (required) The number of reblogs for the status
   final int reblogs_count;
@@ -104,7 +104,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
     this.reblog = null,
     this.content,
     this.created_at,
-    // this.emojis,
+    this.emojis,
     this.reblogs_count,
     this.favourites_count,
     this.reblogged = null,
