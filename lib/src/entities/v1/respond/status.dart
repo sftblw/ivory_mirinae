@@ -74,7 +74,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
   final String visibility;
 
   /// (required) An array of Attachments
-  // final Attachment media_attachments;
+  final Attachment media_attachments;
 
   /// (required) An array of Mentions
   final Mention mentions;
@@ -113,7 +113,7 @@ class Status extends RespondEntity with _$StatusSerializerMixin {
     this.sensitive,
     this.spoiler_text,
     this.visibility,
-    // this.media_attachments,
+    this.media_attachments,
     this.mentions,
     this.tags,
     this.application = null,

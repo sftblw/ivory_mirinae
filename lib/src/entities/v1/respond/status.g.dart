@@ -33,6 +33,10 @@ Status _$StatusFromJson(Map<String, dynamic> json) => new Status(
     sensitive: json['sensitive'] as bool,
     spoiler_text: json['spoiler_text'] as String,
     visibility: json['visibility'] as String,
+    media_attachments: json['media_attachments'] == null
+        ? null
+        : new Attachment.fromJson(
+            json['media_attachments'] as Map<String, dynamic>),
     mentions: json['mentions'] == null
         ? null
         : new Mention.fromJson(json['mentions'] as Map<String, dynamic>),
@@ -64,6 +68,7 @@ abstract class _$StatusSerializerMixin {
   bool get sensitive;
   String get spoiler_text;
   String get visibility;
+  Attachment get media_attachments;
   Mention get mentions;
   Tag get tags;
   Application get application;
@@ -97,6 +102,7 @@ abstract class _$StatusSerializerMixin {
     val['sensitive'] = sensitive;
     val['spoiler_text'] = spoiler_text;
     val['visibility'] = visibility;
+    val['media_attachments'] = media_attachments;
     val['mentions'] = mentions;
     val['tags'] = tags;
     writeNotNull('application', application);
