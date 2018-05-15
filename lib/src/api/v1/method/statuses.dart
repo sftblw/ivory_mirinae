@@ -9,7 +9,7 @@ import '../../../entities/v1/entities.dart';
 const _prefix = '/api/v1/statuses';
 
 const _StatusesGet statusesGet = const _StatusesGet();
-// const _StatusesContext statusesContext = const _StatusesContext();
+const _StatusesContext statusesContext = const _StatusesContext();
 // const _StatusesCard statusesCard = const _StatusesCard();
 // const _StatusesRebloggedBy statusesRebloggedBy = const _StatusesRebloggedBy();
 // const _StatusesFavoratedBy statusesFavoratedBy = const _StatusesFavoratedBy();
@@ -30,6 +30,18 @@ class _StatusesGet extends EndpointGet {
       client: client,
       instance_url: base_url,
       suburl: id,
+    )));
+  }
+}
+
+class _StatusesContext extends EndpointGet {
+  const _StatusesContext() : super(_prefix);
+
+  Future<Context> call(http.Client client, {String base_url, String id}) async {
+    return new Context.fromJson(json.decode(await accessEndpoint(
+      client: client,
+      instance_url: base_url,
+      suburl: id + "/context",
     )));
   }
 }
