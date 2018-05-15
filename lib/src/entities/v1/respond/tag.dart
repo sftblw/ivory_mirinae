@@ -9,10 +9,10 @@ part 'tag.g.dart';
 
 @JsonSerializable()
 class Tag extends RespondEntity with _$TagSerializerMixin {
-  /// (required) The hashtag, not including the preceding #
+  /// (required)
   final String name;
 
-  /// (required) The URL of the hashtag
+  /// (required)
   final Uri url;
 
   Tag({

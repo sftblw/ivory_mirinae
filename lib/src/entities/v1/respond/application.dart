@@ -9,10 +9,10 @@ part 'application.g.dart';
 
 @JsonSerializable()
 class Application extends RespondEntity with _$ApplicationSerializerMixin {
-  /// (required) Name of the app
+  /// (required)
   final String name;
 
-  /// (optional) Homepage URL of the app
+  /// (optional)
   @JsonKey(includeIfNull: false)
   Uri website;
 

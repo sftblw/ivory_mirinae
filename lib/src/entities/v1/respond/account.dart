@@ -29,52 +29,52 @@ class Account extends RespondEntity with _$AccountSerializerMixin {
     this.moved = null,
   });
 
-  /// (required) The ID of the account
+  /// (required)
   final String id;
 
-  /// (required) The username of the account
+  /// (required)
   final String username;
 
-  /// (required) Equals username for local users; includes @domain for remote ones
+  /// (required)
   final String acct;
 
-  /// (required) The account's display name
+  /// (required)
   final String display_name;
 
-  /// (required) Boolean for when the account cannot be followed without waiting for approval first
+  /// (required)
   final bool locked;
 
-  /// (required) The time the account was created
+  /// (required)
   final DateTime created_at;
 
-  /// (required) The number of followers for the account
+  /// (required)
   final int followers_count;
 
-  /// (required) The number of accounts the given account is following
+  /// (required)
   final int following_count;
 
-  /// (required) The number of statuses the account has made
+  /// (required)
   final int statuses_count;
 
-  /// (required) Biography of user
+  /// (required)
   final Document note;
 
-  /// (required) URL of the user's profile page (can be remote)
+  /// (required)
   final String url;
 
-  /// (required) URL to the avatar image
+  /// (required)
   final Uri avatar;
 
-  /// (required) URL to the avatar static image (gif)
+  /// (required)
   final Uri avatar_static;
 
-  /// (required) URL to the header image
+  /// (required)
   final Uri header;
 
-  /// (required) URL to the header static image (gif)
+  /// (required)
   final Uri header_static;
 
-  /// (optional) If the owner decided to switch accounts; new account is in this attribute
+  /// (optional)
   @JsonKey(includeIfNull: false)
   String moved;
 

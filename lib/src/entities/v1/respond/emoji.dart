@@ -9,13 +9,13 @@ part 'emoji.g.dart';
 
 @JsonSerializable()
 class Emoji extends RespondEntity with _$EmojiSerializerMixin {
-  /// (required) The shortcode of the emoji
+  /// (required)
   final String shortcode;
 
-  /// (required) URL to the emoji static image
+  /// (required)
   final Uri static_url;
 
-  /// (required) URL to the emoji image
+  /// (required)
   final Uri url;
 
   Emoji({this.shortcode, this.static_url, this.url});

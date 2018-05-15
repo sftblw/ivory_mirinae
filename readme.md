@@ -21,7 +21,7 @@ caution: *not ready to use yet* / *in early sketch status*
 8. [ ] publish this lib to dart pub
 8. [ ] webpush?
 
-- [ ] remove AGPL document comments? to be licensed under mit?
+- [x] remove AGPL document comments to be licensed under mit
 
 ## contributing
 

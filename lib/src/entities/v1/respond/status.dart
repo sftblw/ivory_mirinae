@@ -13,84 +13,84 @@ part 'status.g.dart';
 
 @JsonSerializable()
 class Status extends RespondEntity with _$StatusSerializerMixin {
-  /// (required) The ID of the status
+  /// (required)
   final String id;
 
-  /// (required) A Fediverse-unique resource ID
+  /// (required)
   final Uri uri;
 
-  /// (required) URL to the status page (can be remote)
+  /// (required)
   final Uri url;
 
-  /// (required) The Account which posted the status
+  /// (required)
   final Account account;
 
-  /// (optional) null or the ID of the status it replies to
+  /// (optional)
   @JsonKey(includeIfNull: false)
   String in_reply_to_id;
 
-  /// (optional) null or the ID of the account it replies to
+  /// (optional)
   @JsonKey(includeIfNull: false)
   String in_reply_to_account_id;
 
-  /// (optional) null or the reblogged Status
+  /// (optional)
   @JsonKey(includeIfNull: false)
   Status reblog;
 
-  /// (required) Body of the status; this will contain HTML (remote HTML already sanitized)
+  /// (required)
   final Document content;
 
-  /// (required) The time the status was created
+  /// (required)
   final DateTime created_at;
 
-  /// (required) An array of Emoji
+  /// (required)
   final List<Emoji> emojis;
 
-  /// (required) The number of reblogs for the status
+  /// (required)
   final int reblogs_count;
 
-  /// (required) The number of favourites for the status
+  /// (required)
   final int favourites_count;
 
-  /// (optional) Whether the authenticated user has reblogged the status
+  /// (optional)
   @JsonKey(includeIfNull: false)
   bool reblogged;
 
-  /// (optional) Whether the authenticated user has favourited the status
+  /// (optional)
   @JsonKey(includeIfNull: false)
   bool favourited;
 
-  /// (optional) Whether the authenticated user has muted the conversation this status from
+  /// (optional)
   @JsonKey(includeIfNull: false)
   bool muted;
 
-  /// (required) Whether media attachments should be hidden by default
+  /// (required)
   final bool sensitive;
 
-  /// (required) If not empty, warning text that should be displayed before the actual content
+  /// (required)
   final String spoiler_text;
 
-  /// (required) One of: public, unlisted, private, direct
+  /// (required)
   final String visibility;
 
-  /// (required) An array of Attachments
+  /// (required)
   final List<Attachment> media_attachments;
 
-  /// (required) An array of Mentions
+  /// (required)
   final List<Mention> mentions;
 
-  /// (required) An array of Tags
+  /// (required)
   final List<Tag> tags;
 
-  /// (optional) Application from which the status was posted
+  /// (optional)
   @JsonKey(includeIfNull: false)
   Application application;
 
-  /// (optional) The detected language for the status, if detected
+  /// (optional)
   @JsonKey(includeIfNull: false)
   String language;
 
-  /// (optional) Whether this is the pinned status for the account that posted it
+  /// (optional)
   @JsonKey(includeIfNull: false)
   bool pinned;
 

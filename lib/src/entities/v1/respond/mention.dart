@@ -9,16 +9,16 @@ part 'mention.g.dart';
 
 @JsonSerializable()
 class Mention extends RespondEntity with _$MentionSerializerMixin {
-  /// (required) URL of user's profile (can be remote)
+  /// (required)
   final Uri url;
 
-  /// (required) The username of the account
+  /// (required)
   final String username;
 
-  /// (required) Equals
+  /// (required)
   final String acct;
 
-  /// (required) Account ID
+  /// (required)
   final String id;
 
   Mention({this.url, this.username, this.acct, this.id});
