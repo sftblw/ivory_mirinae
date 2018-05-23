@@ -18,6 +18,10 @@ Future main(List<String> args) async {
       visibility: "direct",
       in_reply_to_id: "99999337389821650"));
   print(status_posted.toJsonString());
+
+  List<Account> accounts =
+      await mastodon.statusesRebloggedBy("99999337389821650");
+  print(accounts.toString());
 }
 
 Future<AppForInstance> registerOrLoadApp(String path) async {

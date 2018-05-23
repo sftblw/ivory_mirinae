@@ -32,13 +32,15 @@ abstract class EndpointGet extends Endpoint {
   Future<String> accessEndpoint(
       {http.Client client = null,
       String instance_url,
-      String suburl = null}) async {
+      String suburl = null,
+      Map<String, dynamic> params = null}) async {
     if (client == null) {
       client = new http.Client();
     }
 
-    String ap_url =
-        '${instance_url}/${base_url}' + (suburl != null ? "/$suburl" : "");
+    Uri ap_url = Uri.parse(
+        '${instance_url}/${base_url}' + (suburl != null ? "/$suburl" : ""));
+    ap_url = ap_url.replace(queryParameters: params);
 
     var response = await client.get(
       ap_url,
