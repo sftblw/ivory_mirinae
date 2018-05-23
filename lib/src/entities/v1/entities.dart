@@ -11,6 +11,7 @@ export 'respond/account.dart';
 export 'respond/application.dart';
 export 'respond/appauth.dart';
 export 'respond/attachment.dart';
+export 'respond/card.dart';
 export 'respond/context.dart';
 export 'respond/emoji.dart';
 export 'respond/errorentity.dart';

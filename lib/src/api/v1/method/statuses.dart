@@ -10,7 +10,7 @@ const _prefix = '/api/v1/statuses';
 
 const _StatusesGet statusesGet = const _StatusesGet();
 const _StatusesContext statusesContext = const _StatusesContext();
-// const _StatusesCard statusesCard = const _StatusesCard();
+const _StatusesCard statusesCard = const _StatusesCard();
 // const _StatusesRebloggedBy statusesRebloggedBy = const _StatusesRebloggedBy();
 // const _StatusesFavoratedBy statusesFavoratedBy = const _StatusesFavoratedBy();
 const _StatusesPost statusesPost = const _StatusesPost();
@@ -42,6 +42,18 @@ class _StatusesContext extends EndpointGet {
       client: client,
       instance_url: base_url,
       suburl: id + "/context",
+    )));
+  }
+}
+
+class _StatusesCard extends EndpointGet {
+  const _StatusesCard() : super(_prefix);
+
+  Future<Card> call(http.Client client, {String base_url, String id}) async {
+    return new Card.fromJson(json.decode(await accessEndpoint(
+      client: client,
+      instance_url: base_url,
+      suburl: id + "/card",
     )));
   }
 }

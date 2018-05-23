@@ -1,0 +1,15 @@
+{
+    "url": "https://www.youtube.com/watch?v=yVB8Q_UTh8E",
+    "title": "Hatsune Miku VR Teaser",
+    "description": "",
+    "type": "video",
+    "author_name": "Degica Games",
+    "author_url": "https://www.youtube.com/user/DegiGames",
+    "provider_name": "YouTube",
+    "provider_url": "https://www.youtube.com/",
+    "html": "<iframe width=\"480\" height=\"270\" src=\"https://www.youtube.com/embed/yVB8Q_UTh8E?feature=oembed\" frameborder=\"0\" allowfullscreen=\"\"></iframe>",
+    "width": 480,
+    "height": 270,
+    "image": "https://storage.googleapis.com/twingyeo-kr-media/preview_cards/images/000/090/693/original/529bde2d71c80905.jpg",
+    "embed_url": ""
+}
