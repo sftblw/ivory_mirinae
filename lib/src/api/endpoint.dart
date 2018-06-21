@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../entities/v1/entities.dart';
 
-enum HttpMethod { GET, POST, PATCH }
+enum HttpMethod { GET, POST, PATCH, DELETE }
 
 /// Base class for each endpoint
 ///
@@ -22,6 +22,19 @@ abstract class Endpoint {
 
   static bool _IsStatusCode2xx(int code) {
     return (200 <= code) && (300 > code);
+  }
+
+  http.Response handleError(http.Response response) {
+    if (Endpoint._print_response) {
+      print(response.body);
+    }
+
+    // handle error
+    if (!Endpoint._IsStatusCode2xx(response.statusCode)) {
+      throw new ErrorEntity.fromJson(json.decode(response.body));
+    }
+
+    return response;
   }
 }
 
@@ -47,16 +60,7 @@ abstract class EndpointGet extends Endpoint {
       headers: {"accept": "application/json"},
     );
 
-    if (Endpoint._print_response) {
-      print(response.body);
-    }
-
-    // handle error
-    if (!Endpoint._IsStatusCode2xx(response.statusCode)) {
-      throw new ErrorEntity.fromJson(json.decode(response.body));
-    }
-
-    return response.body;
+    return handleError(response).body;
   }
 }
 
@@ -80,16 +84,29 @@ abstract class EndpointPost extends Endpoint {
         headers: {"content-type": "application/json"},
         body: json.encode(body_json));
 
-    if (Endpoint._print_response) {
-      print(response.body);
+    return handleError(response).body;
+  }
+}
+
+abstract class EndpointDelete extends Endpoint {
+  const EndpointDelete(String base_url)
+      : super(base_url: base_url, method: HttpMethod.DELETE);
+
+  Future<String> accessEndpoint(
+      {http.Client client = null,
+      String instance_url,
+      String suburl = null}) async {
+    if (client == null) {
+      client = new http.Client();
     }
 
-    // handle error
-    if (!Endpoint._IsStatusCode2xx(response.statusCode)) {
-      throw new ErrorEntity.fromJson(json.decode(response.body));
-    }
+    String ap_url =
+        '${instance_url}/${base_url}' + (suburl != null ? "/$suburl" : "");
 
-    return response.body;
+    var response = await client
+        .delete(ap_url, headers: {"content-type": "application/json"});
+
+    return handleError(response).body;
   }
 }
 // abstract class EndpointPatch extends Endpoint {}

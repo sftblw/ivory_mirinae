@@ -14,7 +14,7 @@ const _StatusesCard statusesCard = const _StatusesCard();
 const _StatusesRebloggedBy statusesRebloggedBy = const _StatusesRebloggedBy();
 const _StatusesFavoritedBy statusesFavoratedBy = const _StatusesFavoritedBy();
 const _StatusesPost statusesPost = const _StatusesPost();
-// const _StatusesDelete statusesDelete = const _StatusesDelete();
+const _StatusesDelete statusesDelete = const _StatusesDelete();
 // const _StatusesReblog statusesReblog = const _StatusesReblog();
 // const _StatusesUnreblog statusesUnreblog = const _StatusesUnreblog();
 // const _StatusesFavorate statusesFavorate = const _StatusesFavorate();
@@ -115,5 +115,15 @@ class _StatusesPost extends EndpointPost {
         client: client,
         instance_url: base_url,
         body_json: status_posting.toJson())));
+  }
+}
+
+class _StatusesDelete extends EndpointDelete {
+  const _StatusesDelete() : super(_prefix);
+
+  // API returns empty object on success
+  Future<void> call(http.Client client, {String base_url, String id}) async {
+    return json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id));
   }
 }

@@ -23,4 +23,7 @@ abstract class _$MastodonApiMixin_Statuses {
   Future<Status> statusesPost(StatusPost status_posting) async =>
       apis.statusesPost(client,
           base_url: instance_url, status_posting: status_posting);
+
+  Future<void> statusesDelete(String id) async =>
+      apis.statusesDelete(client, base_url: instance_url, id: id);
 }
