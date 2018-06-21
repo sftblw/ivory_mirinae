@@ -11,9 +11,9 @@ caution: *not ready to use yet* / *in early sketch status*
 1. [x] register
 2. [x] api base class and design
 3. [ ] status
-  - [x] get
-  - [x] send
-  - [ ] other apis (such much apis)
+    - [x] get
+    - [x] send
+    - [ ] other apis (such much apis)
 4. [ ] media
 5. [ ] finish basic apis
 6. [ ] streaming
