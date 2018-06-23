@@ -21,8 +21,8 @@ const _StatusesUnreblog statusesUnreblog = const _StatusesUnreblog();
 const _StatusesFavourite statusesFavourite =
     const _StatusesFavourite(); // such uk english...
 const _StatusesUnfavourite statusesUnfavourite = const _StatusesUnfavourite();
-// const _StatusesMute statusesMute = const _StatusesMute();
-// const _StatusesUnmute statusesUnmute = const _StatusesUnmute();
+const _StatusesMute statusesMute = const _StatusesMute();
+const _StatusesUnmute statusesUnmute = const _StatusesUnmute();
 
 class _StatusesGet extends EndpointGet {
   const _StatusesGet() : super(_prefix);
@@ -168,5 +168,23 @@ class _StatusesUnfavourite extends EndpointPost {
   Future<Status> call(http.Client client, {String base_url, String id}) async {
     return new Status.fromJson(json.decode(await accessEndpoint(
         client: client, instance_url: base_url, suburl: id + '/unfavourite')));
+  }
+}
+
+class _StatusesMute extends EndpointPost {
+  const _StatusesMute() : super(_prefix);
+
+  Future<Status> call(http.Client client, {String base_url, String id}) async {
+    return new Status.fromJson(json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id + '/mute')));
+  }
+}
+
+class _StatusesUnmute extends EndpointPost {
+  const _StatusesUnmute() : super(_prefix);
+
+  Future<Status> call(http.Client client, {String base_url, String id}) async {
+    return new Status.fromJson(json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id + '/unmute')));
   }
 }
