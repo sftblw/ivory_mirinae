@@ -23,6 +23,9 @@ Future main(List<String> args) async {
       await mastodon.statusesRebloggedBy("99999337389821650");
   // print(accounts.toString());
 
+  var status = await mastodon.statusesFavourite(status_posted.id);
+  assert(status.favourited == true);
+
   await new Future.delayed(const Duration(seconds: 1));
   await mastodon.statusesDelete(status_posted.id);
 }

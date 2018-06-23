@@ -71,7 +71,7 @@ abstract class EndpointPost extends Endpoint {
   Future<String> accessEndpoint(
       {http.Client client = null,
       String instance_url,
-      Map<String, dynamic> body_json,
+      Map<String, dynamic> body_json = null,
       String suburl = null}) async {
     if (client == null) {
       client = new http.Client();
@@ -82,7 +82,7 @@ abstract class EndpointPost extends Endpoint {
 
     var response = await client.post(ap_url,
         headers: {"content-type": "application/json"},
-        body: json.encode(body_json));
+        body: body_json == null ? null : json.encode(body_json));
 
     return handleError(response).body;
   }

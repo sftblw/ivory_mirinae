@@ -15,10 +15,11 @@ const _StatusesRebloggedBy statusesRebloggedBy = const _StatusesRebloggedBy();
 const _StatusesFavoritedBy statusesFavoratedBy = const _StatusesFavoritedBy();
 const _StatusesPost statusesPost = const _StatusesPost();
 const _StatusesDelete statusesDelete = const _StatusesDelete();
-// const _StatusesReblog statusesReblog = const _StatusesReblog();
-// const _StatusesUnreblog statusesUnreblog = const _StatusesUnreblog();
-// const _StatusesFavorate statusesFavorate = const _StatusesFavorate();
-// const _StatusesUnfavorate statusesUnfavorate = const _StatusesUnfavorate();
+const _StatusesReblog statusesReblog = const _StatusesReblog();
+const _StatusesUnreblog statusesUnreblog = const _StatusesUnreblog();
+const _StatusesFavourite statusesFavourite =
+    const _StatusesFavourite(); // such uk english...
+const _StatusesUnfavourite statusesUnfavourite = const _StatusesUnfavourite();
 // const _StatusesMute statusesMute = const _StatusesMute();
 // const _StatusesUnmute statusesUnmute = const _StatusesUnmute();
 
@@ -130,5 +131,41 @@ class _StatusesDelete extends EndpointDelete {
   Future<void> call(http.Client client, {String base_url, String id}) async {
     return json.decode(await accessEndpoint(
         client: client, instance_url: base_url, suburl: id));
+  }
+}
+
+class _StatusesReblog extends EndpointPost {
+  const _StatusesReblog() : super(_prefix);
+
+  Future<Status> call(http.Client client, {String base_url, String id}) async {
+    return new Status.fromJson(json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id + '/reblog')));
+  }
+}
+
+class _StatusesUnreblog extends EndpointPost {
+  const _StatusesUnreblog() : super(_prefix);
+
+  Future<Status> call(http.Client client, {String base_url, String id}) async {
+    return new Status.fromJson(json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id + '/unreblog')));
+  }
+}
+
+class _StatusesFavourite extends EndpointPost {
+  const _StatusesFavourite() : super(_prefix);
+
+  Future<Status> call(http.Client client, {String base_url, String id}) async {
+    return new Status.fromJson(json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id + '/favourite')));
+  }
+}
+
+class _StatusesUnfavourite extends EndpointPost {
+  const _StatusesUnfavourite() : super(_prefix);
+
+  Future<Status> call(http.Client client, {String base_url, String id}) async {
+    return new Status.fromJson(json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id + '/unfavourite')));
   }
 }
