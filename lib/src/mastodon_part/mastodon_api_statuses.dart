@@ -9,11 +9,23 @@ abstract class _$MastodonApiMixin_Statuses {
   Future<Status> statusesGet(String id) async =>
       apis.statusesGet(client, base_url: instance_url, id: id);
 
+  static Future<Status> statusesGetNoAuth(
+          String instance_url, String id) async =>
+      apis.statusesGet(null, base_url: instance_url, id: id);
+
   Future<Context> statusesContext(String id) async =>
       apis.statusesContext(client, base_url: instance_url, id: id);
 
+  static Future<Context> statusesContextNoAuth(
+          String instance_url, String id) async =>
+      apis.statusesContext(null, base_url: instance_url, id: id);
+
   Future<Card> statusesCard(String id) async =>
       apis.statusesCard(client, base_url: instance_url, id: id);
+
+  static Future<Card> statusesCardNoAuth(
+          String instance_url, String id) async =>
+      apis.statusesCard(null, base_url: instance_url, id: id);
 
   Future<List<Account>> statusesRebloggedBy(String id,
           [String max_id = null,
@@ -26,17 +38,42 @@ abstract class _$MastodonApiMixin_Statuses {
           since_id: since_id,
           limit: limit);
 
-  Future<List<Account>> statusesFavouritedBy(String id,
+  static Future<List<Account>> statusesRebloggedByNoAuth(
+          String instance_url, String id,
           [String max_id = null,
           String since_id = null,
           int limit = null]) async =>
-      apis.statusesRebloggedBy(client,
+      apis.statusesRebloggedBy(null,
           base_url: instance_url,
           id: id,
           max_id: max_id,
           since_id: since_id,
           limit: limit);
 
+  Future<List<Account>> statusesFavouritedBy(String id,
+          [String max_id = null,
+          String since_id = null,
+          int limit = null]) async =>
+      apis.statusesFavouritedBy(client,
+          base_url: instance_url,
+          id: id,
+          max_id: max_id,
+          since_id: since_id,
+          limit: limit);
+
+  static Future<List<Account>> statusesFavouritedByNoAuth(
+          String instance_url, String id,
+          [String max_id = null,
+          String since_id = null,
+          int limit = null]) async =>
+      apis.statusesFavouritedBy(null,
+          base_url: instance_url,
+          id: id,
+          max_id: max_id,
+          since_id: since_id,
+          limit: limit);
+
+  // todo: implement Idemotency-key (what is that)
   Future<Status> statusesPost(StatusPost status_posting) async =>
       apis.statusesPost(client,
           base_url: instance_url, status_posting: status_posting);
