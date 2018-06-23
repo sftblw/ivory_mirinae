@@ -71,11 +71,16 @@ class _StatusesRebloggedBy extends EndpointGet {
       String max_id = null,
       String since_id = null,
       int limit = null}) async {
-    List<Map<String, dynamic>> json_list = json.decode(await accessEndpoint(
-        client: client,
-        instance_url: base_url,
-        suburl: id + "/reblogged_by",
-        params: {"max_id": max_id, "since_id": since_id, "limit": limit}));
+    List<Map<String, dynamic>> json_list = (json.decode(await accessEndpoint(
+            client: client,
+            instance_url: base_url,
+            suburl: id + "/reblogged_by",
+            params: {
+          "max_id": max_id,
+          "since_id": since_id,
+          "limit": limit
+        })) as List<dynamic>)
+        .cast<Map<String, dynamic>>();
 
     List<Account> results =
         json_list.map((elem) => new Account.fromJson(elem)).toList();
