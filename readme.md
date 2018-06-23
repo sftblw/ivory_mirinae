@@ -30,7 +30,8 @@ caution: *not ready to use yet* / *in early sketch status*
 4. [ ] finish basic apis
 5. [ ] streaming
 6. [ ] write tests sometime
-7. [ ] publish this lib to dart pub
+7. [ ] test with flutter
+8. [ ] publish this lib to dart pub
 
 - [x] remove AGPL document comments to be licensed under mit
 
@@ -64,3 +65,5 @@ when you give any kind of contribution, you're agreeing giving copyright of the 
 6. debug
 
 format on save is required if you are not not
+
+after changing entities, you should run build.bat or the command inside it. it regenerates JSON serialization with the json_serializable package
