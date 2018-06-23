@@ -12,7 +12,8 @@ const _StatusesGet statusesGet = const _StatusesGet();
 const _StatusesContext statusesContext = const _StatusesContext();
 const _StatusesCard statusesCard = const _StatusesCard();
 const _StatusesRebloggedBy statusesRebloggedBy = const _StatusesRebloggedBy();
-const _StatusesFavoritedBy statusesFavoratedBy = const _StatusesFavoritedBy();
+const _StatusesFavouritedBy statusesFavouritedBy =
+    const _StatusesFavouritedBy();
 const _StatusesPost statusesPost = const _StatusesPost();
 const _StatusesDelete statusesDelete = const _StatusesDelete();
 const _StatusesReblog statusesReblog = const _StatusesReblog();
@@ -90,8 +91,8 @@ class _StatusesRebloggedBy extends EndpointGet {
   }
 }
 
-class _StatusesFavoritedBy extends EndpointGet {
-  const _StatusesFavoritedBy() : super(_prefix);
+class _StatusesFavouritedBy extends EndpointGet {
+  const _StatusesFavouritedBy() : super(_prefix);
 
   Future<List<Account>> call(http.Client client,
       {String base_url,
@@ -102,7 +103,7 @@ class _StatusesFavoritedBy extends EndpointGet {
     List<Map<String, dynamic>> json_list = json.decode(await accessEndpoint(
         client: client,
         instance_url: base_url,
-        suburl: id + "/reblogged_by",
+        suburl: id + "/favourited_by",
         params: {"max_id": max_id, "since_id": since_id, "limit": limit}));
 
     List<Account> results =

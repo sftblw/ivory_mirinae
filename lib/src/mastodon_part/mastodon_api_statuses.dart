@@ -9,7 +9,24 @@ abstract class _$MastodonApiMixin_Statuses {
   Future<Status> statusesGet(String id) async =>
       apis.statusesGet(client, base_url: instance_url, id: id);
 
+  Future<Context> statusesContext(String id) async =>
+      apis.statusesContext(client, base_url: instance_url, id: id);
+
+  Future<Card> statusesCard(String id) async =>
+      apis.statusesCard(client, base_url: instance_url, id: id);
+
   Future<List<Account>> statusesRebloggedBy(String id,
+          [String max_id = null,
+          String since_id = null,
+          int limit = null]) async =>
+      apis.statusesRebloggedBy(client,
+          base_url: instance_url,
+          id: id,
+          max_id: max_id,
+          since_id: since_id,
+          limit: limit);
+
+  Future<List<Account>> statusesFavouritedBy(String id,
           [String max_id = null,
           String since_id = null,
           int limit = null]) async =>
