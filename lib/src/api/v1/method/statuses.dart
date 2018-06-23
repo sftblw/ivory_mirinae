@@ -21,6 +21,8 @@ const _StatusesUnreblog statusesUnreblog = const _StatusesUnreblog();
 const _StatusesFavourite statusesFavourite =
     const _StatusesFavourite(); // such uk english...
 const _StatusesUnfavourite statusesUnfavourite = const _StatusesUnfavourite();
+const _StatusesPin statusesPin = const _StatusesPin();
+const _StatusesUnpin statusesUnpin = const _StatusesUnpin();
 const _StatusesMute statusesMute = const _StatusesMute();
 const _StatusesUnmute statusesUnmute = const _StatusesUnmute();
 
@@ -168,6 +170,24 @@ class _StatusesUnfavourite extends EndpointPost {
   Future<Status> call(http.Client client, {String base_url, String id}) async {
     return new Status.fromJson(json.decode(await accessEndpoint(
         client: client, instance_url: base_url, suburl: id + '/unfavourite')));
+  }
+}
+
+class _StatusesPin extends EndpointPost {
+  const _StatusesPin() : super(_prefix);
+
+  Future<Status> call(http.Client client, {String base_url, String id}) async {
+    return new Status.fromJson(json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id + '/pin')));
+  }
+}
+
+class _StatusesUnpin extends EndpointPost {
+  const _StatusesUnpin() : super(_prefix);
+
+  Future<Status> call(http.Client client, {String base_url, String id}) async {
+    return new Status.fromJson(json.decode(await accessEndpoint(
+        client: client, instance_url: base_url, suburl: id + '/unpin')));
   }
 }
 

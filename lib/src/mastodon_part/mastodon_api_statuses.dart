@@ -57,6 +57,14 @@ abstract class _$MastodonApiMixin_Statuses {
       apis.statusesUnfavourite(client, base_url: instance_url, id: id);
 
   /// see api docs. this api needs caution in its meaning.
+  Future<Status> statusesPin(String id) async =>
+      apis.statusesPin(client, base_url: instance_url, id: id);
+
+  /// see api docs. this api needs caution in its meaning.
+  Future<Status> statusesUnpin(String id) async =>
+      apis.statusesUnpin(client, base_url: instance_url, id: id);
+
+  /// see api docs. this api needs caution in its meaning.
   Future<Status> statusesMute(String id) async =>
       apis.statusesMute(client, base_url: instance_url, id: id);
 
